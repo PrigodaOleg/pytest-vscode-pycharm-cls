@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="pytest-vscode-pycharm-cls",
     packages=["pytest_vscode_pycharm_cls"],
-    version="0.1",
+    version="0.2",
     description="A PyTest helper to enable start remote debugger on test start or failure "
                 "or when pytest.set_trace is used.",
     long_description="A PyTest helper to enable start remote debugger on test start or failure "
