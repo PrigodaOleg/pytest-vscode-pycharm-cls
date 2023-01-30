@@ -1,12 +1,9 @@
 # pytest-vscode-pycharm-cls
 ## Installation
-    todo
+    pip install pytest-vscode-pycharm-cls
 ## Usage
 ### Integration to Visual Studio Code
 First, generate launch.json file in VSCode. Use Python -> Remote Attach option
-Second, install debudpy to remote (or local) machine where you planned to run pytest.
-    
-    pip3 install debugpy
 
 At start tests:
 
@@ -19,9 +16,6 @@ At tests failed:
 ### Integration to PyCharm
 Attention: debug server is not integrated in community PyCharm version. Sad.
 First, create Debug Server configuration.
-Second, install pydevd_pycharm to remote (or local) machine where you planned to run pytest. Be careful to choose version, it must be equal to your PyCharm version.
-
-    pip3 install pydevd-pycharm~=212.5457.59
 
 At start tests:
 
