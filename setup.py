@@ -3,15 +3,13 @@ from setuptools import setup
 setup(
     name="pytest-vscode-pycharm-cls",
     packages=["pytest_vscode_pycharm_cls"],
-    version="0.2",
+    version="0.3",
     description="A PyTest helper to enable start remote debugger on test start or failure "
                 "or when pytest.set_trace is used.",
     long_description="A PyTest helper to enable start remote debugger on test start or failure "
                      "or when pytest.set_trace is used. Works with Visual Studio Code and PyCharm.\n"
-                     "pytest /path/to/your/tests --pdbcls=pytest_vscode_pycharm_cls.VSCode --debug-host=localhost --debug-port=5678 --debug-wait-timeout=5000 --trace\n"
-                     "pytest /path/to/your/tests --pdbcls=pytest_vscode_pycharm_cls.VSCode --debug-host=localhost --debug-port=5678 --debug-wait-timeout=5000 --pdb\n"
-                     "pytest /path/to/your/tests --pdbcls=pytest_vscode_pycharm_cls.PyCharm --debug-host=localhost --debug-port=5678 --debug-wait-timeout=5000 --trace\n"
-                     "pytest /path/to/your/tests --pdbcls=pytest_vscode_pycharm_cls.PyCharm --debug-host=localhost --debug-port=5678 --debug-wait-timeout=5000 --pdb"
+                     "pytest /path/to/your/tests --pdbcls=pytest_vscode_pycharm_cls.Pdb --debug-host=localhost --debug-port=5678 --debug-wait-timeout=5000 --trace\n"
+                     "pytest /path/to/your/tests --pdbcls=pytest_vscode_pycharm_cls.Pdb --debug-host=localhost --debug-port=5678 --debug-wait-timeout=5000 --pdb"
 ,
     author="Prigoda Oleg",
     author_email="prigodaoleg@gmail.com",
