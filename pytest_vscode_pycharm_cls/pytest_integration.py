@@ -1,5 +1,7 @@
 import os
 import time
+import debugpy
+import pydevd_pycharm
 
 
 def pytest_addoption(parser):
@@ -34,22 +36,20 @@ def pytest_configure(config):
 
 class Pdb:
     is_started = False
+    timeout = 0
 
     def __init__(self, *args, **kwargs):
         if not Pdb.is_started:
             Pdb.is_started = True
-            host = os.environ.get('PYTEST_DEBUG_HOST')
-            vscode_port = int(os.environ.get('PYTEST_DEBUG_PORT_VSCODE'))
-            pycharm_port = int(os.environ.get('PYTEST_DEBUG_PORT_PYCHARM'))
             Pdb.timeout = int(os.environ.get('PYTEST_DEBUG_WAIT_TIMEOUT'))
+        Pdb.host = os.environ.get('PYTEST_DEBUG_HOST')
+        Pdb.vscode_port = int(os.environ.get('PYTEST_DEBUG_PORT_VSCODE'))
+        Pdb.pycharm_port = int(os.environ.get('PYTEST_DEBUG_PORT_PYCHARM'))
 
-            # VSCode server
-            import debugpy
-            debugpy.listen((host, vscode_port))
+        # VSCode server
+        debugpy.listen((Pdb.host, Pdb.vscode_port))
 
-        # PyCharm client
-        import pydevd_pycharm
-
+    def runcall(self, func):
         while Pdb.timeout > 0:
             # Check if VSCode IDE has connected
             if debugpy.is_client_connected():
@@ -57,8 +57,8 @@ class Pdb:
 
             # Trying to connect to PyCharm debugging server
             try:
-                pydevd_pycharm.settrace(host,
-                                        port=pycharm_port,
+                pydevd_pycharm.settrace(Pdb.host,
+                                        port=Pdb.pycharm_port,
                                         stdoutToServer=True,
                                         stderrToServer=True
                                         )
@@ -67,6 +67,5 @@ class Pdb:
                 time.sleep(1)
                 Pdb.timeout -= 1
 
-    def runcall(self, func):
         breakpoint()
         func(*func.args, **func.keywords)
